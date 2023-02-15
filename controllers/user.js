@@ -62,7 +62,19 @@ const handleLogin = async (req, res) => {
   res.status(200).json({ token: token })
 }
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find({})
+    res.send(200).json(users)
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+    })
+  }
+}
+
 module.exports = {
   handleSignUp,
   handleLogin,
+  getAllUsers,
 }
