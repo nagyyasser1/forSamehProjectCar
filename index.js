@@ -16,15 +16,15 @@ const carRoutes = require('./routes/car')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use('/', (req, res) => {
+app.use('/users', userRoutes)
+app.use('/cars', carRoutes)
+app.get('/', (req, res) => {
   res
     .status(200)
     .send(
       'hi bro this route does not do anything you should go to "/cars" or "/users" and enjoy with our api',
     )
 })
-app.use('/users', userRoutes)
-app.use('/cars', carRoutes)
 app.use('*', (req, res) => {
   res.send('page not Found')
 })
